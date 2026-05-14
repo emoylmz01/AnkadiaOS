@@ -1,34 +1,34 @@
-# Ankadia OS (İşletim Sistemi)
+# Ankadia OS (Operating System)
 
 ![Ankadia OS](Boot_Ekrani.png)
 
-Ankadia OS, "Ankadia" adlı Türkçe programlama dili için özel olarak tasarlanmış, mor temalı (Dark Purple) ve tamamen donanımdan izole bir şekilde x86 mimarisinde çalışan deneysel bir Mikro-Çekirdek İşletim Sistemi'dir.
+Ankadia OS is an experimental x86 Micro-kernel Operating System specifically designed for the Turkish programming language "Ankadia". It features a Dark Purple theme and operates entirely isolated from the hardware.
 
-## Proje Amacı
-Bu projenin amacı klasik siyah-beyaz veya mavi ekranların ötesine geçerek, **tamamen Türkçe karakterleri** destekleyen, GUI (grafiksel menü) yapısına sahip, kendine has bir ekosistem yaratmaktır. Ana hedef, geliştirmiş olduğumuz Türkçe IDE'yi bir masaüstü uygulaması olmaktan çıkarıp bizzat işletim sistemine entegre etmektir. 
+## Project Goal
+The goal of this project is to go beyond classic black-and-white or blue screens and create a unique ecosystem with a GUI structure that fully supports **Turkish characters**. The main objective is to move our Turkish IDE from being a desktop application to being directly integrated into the operating system itself.
 
-## Klasör Yapısı (V1.0.0)
+## Folder Structure (V1.0.0)
 
-- `/boot`: GRUB Multi-boot spesifikasyonları için x86 Assembly stubs (Bootloader).
-- `/kernel`: C ile yazılmış, GDT (Global Descriptor Table), IDT ve Korumalı Mod donatılarını ayarlayan ana gövde.
-- `/drivers`: Ekrana piksel veya yazı çizmek için VGA ekran adaptörü modülleri ve Türkçe karakter destekli (IRQ1 kesmesi) klavye okuma modülleri.
-- `/gui`: Pencereleme sisteminin ön kısımları, "Double Buffering" mimarisine sahip çizim arabirimleri.
-- `Makefile`: Sistemi hızlıca derlemek ve `ankadiaos.iso` çıktısı oluşturmak için derleme tanımlamaları.
+- `/boot`: x86 Assembly stubs for GRUB Multi-boot specifications (Bootloader).
+- `/kernel`: The main body written in C, setting up GDT (Global Descriptor Table), IDT, and Protected Mode components.
+- `/drivers`: VGA display adapter modules for drawing pixels or text, and keyboard reading modules with Turkish character support (IRQ1 interrupt).
+- `/gui`: Front-end components of the windowing system, using a "Double Buffering" architecture for drawing interfaces.
+- `Makefile`: Build definitions to quickly compile the system and generate the `ankadiaos.iso` output.
 
-## Gereksinimler ve Derleme İşlemi (Linux ortamında veya WSL'de)
+## Requirements and Build Process (On Linux or WSL)
 
-Bu sistemi sıfırdan derlemek için bilgisayarınızda bir GCC cross-compiler (`i686-elf-gcc`) ve Assembly tarafı için nasm derleyicisi olmalıdır.
+To compile this system from scratch, you need a GCC cross-compiler (`i686-elf-gcc`) on your machine and the nasm assembler for the Assembly parts.
 
-Sistemi QEMU ile emüle ederek çalıştırmak için aşağıdaki komutu kullanabilirsiniz:
+To run the system using QEMU emulation, use the following command:
 
 ```bash
 make
 make run
 ```
 
-Eğer bir ISO oluşturup VirtualBox veya VMWare ile açmak isterseniz:
+If you want to create an ISO to open with VirtualBox or VMware:
 ```bash
 make iso
 ```
 
-*(Not: Boot_Ekrani.png ve Arayuz_Ekrani.png demoları ekran görüntülerini içerir.)*
+*(Note: Boot_Ekrani.png and Arayuz_Ekrani.png demos include screenshots.)*
